@@ -10,7 +10,7 @@ zipp==3.10.0
 gspread==5.7.2
 google-api-python-client==2.42.0
 google-auth-httplib2==0.1.0
-google-auth-oauthlib==0.5.1
+google-auth-oauthlib>=0.5.1
 pydantic==1.9.0
 python-dotenv==0.20.0
 authlib>=1.0
