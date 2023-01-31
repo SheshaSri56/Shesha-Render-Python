@@ -1,10 +1,9 @@
 from flask import Flask
-
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+
 
 import requests
 from bs4 import BeautifulSoup
@@ -24,7 +23,7 @@ Condition = "( {33489} ( weekly high > 1 week ago high and latest high > 1 day a
 #shesha-bulloong1
 
 
-def GetDataFromChartink1(payload):
+def GetDataFromChartink(payload):
     payload = {'scan_clause': payload}
     
     with requests.Session() as s:
@@ -42,8 +41,7 @@ def GetDataFromChartink1(payload):
     return df1
 
 data = GetDataFromChartink(Condition)
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+
 scope = ['https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file",
 "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name('sheshadri-python-test-9a0984512950.json', scope)
@@ -72,7 +70,9 @@ else :
     
 
 
-
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
 
 if __name__ == '__main__':
     app.run()
